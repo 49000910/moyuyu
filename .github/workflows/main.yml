@@ -1,0 +1,32 @@
+name: Online_Build_EXE  # 生产线名称
+
+on: 
+  workflow_dispatch:     # 允许手动点击开始打包
+
+jobs:
+  build:
+    runs-on: windows-latest  # 使用微软的服务器帮你打包
+
+    steps:
+    - uses: actions/checkout@v4  # 读取你的代码
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller   # 安装打包工具
+
+    - name: Run PyInstaller
+      run: |
+        # 这里的 moyu.py 必须和你上传的文件名一致
+        pyinstaller --noconsole --onefile --name "82023703摸鱼工具" main.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: EXE_Result_Package   # 下载包的名字
+        path: dist/*.exe           # 只提取生成的 EXE 文件
