@@ -73,7 +73,7 @@ def start_auto_input(text_area, root, mode_var, s1, s2, s3):
 # --- 主界面 ---
 def open_main_window():
     root = tk.Tk()
-    root.title("82023703专用进站摸鱼工具-全能版")
+    root.title("82023703的进站摸鱼工具")
     root.geometry("420x760") 
     
     # 1. 条码输入区
@@ -177,3 +177,4 @@ def login_screen():
 
 if __name__ == "__main__":
     login_screen()
+
